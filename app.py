@@ -18,6 +18,12 @@ model = joblib.load("alzheimers_gb_model.pkl")
 scaler = joblib.load("scaler.pkl")
 
 # -----------------------------------
+# Helper Function
+# -----------------------------------
+def yes_no(label):
+    return 1 if st.selectbox(label, ["No", "Yes"]) == "Yes" else 0
+
+# -----------------------------------
 # Header
 # -----------------------------------
 st.markdown("""
@@ -48,9 +54,8 @@ st.sidebar.info(
 )
 
 # -----------------------------------
-# Input Sections
+# Demographic Information
 # -----------------------------------
-
 st.subheader("👤 Demographic Information")
 
 col1, col2, col3 = st.columns(3)
@@ -59,15 +64,39 @@ with col1:
     Age = st.number_input("Age", 60, 100, 70)
 
 with col2:
-    Gender = st.selectbox("Gender", [0, 1])
+    Gender = st.selectbox("Gender", ["Male", "Female"])
+    Gender = 1 if Gender == "Male" else 0
 
 with col3:
-    Ethnicity = st.selectbox("Ethnicity", [0, 1, 2, 3])
+    Ethnicity = st.selectbox(
+        "Ethnicity",
+        ["Caucasian", "African American", "Asian", "Other"]
+    )
 
-EducationLevel = st.selectbox("Education Level", [0, 1, 2, 3])
+    Ethnicity = {
+        "Caucasian": 0,
+        "African American": 1,
+        "Asian": 2,
+        "Other": 3
+    }[Ethnicity]
+
+EducationLevel = st.selectbox(
+    "Education Level",
+    ["None", "High School", "Bachelor's", "Higher"]
+)
+
+EducationLevel = {
+    "None": 0,
+    "High School": 1,
+    "Bachelor's": 2,
+    "Higher": 3
+}[EducationLevel]
 
 st.divider()
 
+# -----------------------------------
+# Lifestyle Information
+# -----------------------------------
 st.subheader("🏃 Lifestyle Information")
 
 col1, col2, col3 = st.columns(3)
@@ -76,7 +105,7 @@ with col1:
     BMI = st.number_input("BMI", 10.0, 50.0, 25.0)
 
 with col2:
-    Smoking = st.selectbox("Smoking", [0, 1])
+    Smoking = yes_no("Smoking")
 
 with col3:
     AlcoholConsumption = st.number_input(
@@ -109,45 +138,37 @@ SleepQuality = st.slider(
 
 st.divider()
 
+# -----------------------------------
+# Medical History
+# -----------------------------------
 st.subheader("🏥 Medical History")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    FamilyHistoryAlzheimers = st.selectbox(
-        "Family History Alzheimer's",
-        [0, 1]
+    FamilyHistoryAlzheimers = yes_no(
+        "Family History Alzheimer's"
     )
 
-    CardiovascularDisease = st.selectbox(
-        "Cardiovascular Disease",
-        [0, 1]
+    CardiovascularDisease = yes_no(
+        "Cardiovascular Disease"
     )
 
 with col2:
-    Diabetes = st.selectbox(
-        "Diabetes",
-        [0, 1]
-    )
+    Diabetes = yes_no("Diabetes")
 
-    Depression = st.selectbox(
-        "Depression",
-        [0, 1]
-    )
+    Depression = yes_no("Depression")
 
 with col3:
-    HeadInjury = st.selectbox(
-        "Head Injury",
-        [0, 1]
-    )
+    HeadInjury = yes_no("Head Injury")
 
-    Hypertension = st.selectbox(
-        "Hypertension",
-        [0, 1]
-    )
+    Hypertension = yes_no("Hypertension")
 
 st.divider()
 
+# -----------------------------------
+# Clinical Measurements
+# -----------------------------------
 st.subheader("Clinical Measurements")
 
 col1, col2 = st.columns(2)
@@ -198,6 +219,9 @@ with col2:
 
 st.divider()
 
+# -----------------------------------
+# Cognitive & Symptom Assessment
+# -----------------------------------
 st.subheader("🧠 Cognitive & Symptom Assessment")
 
 MMSE = st.slider("MMSE Score", 0.0, 30.0, 15.0)
@@ -214,49 +238,37 @@ ADL = st.slider("ADL Score", 0.0, 10.0, 5.0)
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    MemoryComplaints = st.selectbox(
-        "Memory Complaints",
-        [0, 1]
+    MemoryComplaints = yes_no(
+        "Memory Complaints"
     )
 
-    BehavioralProblems = st.selectbox(
-        "Behavioral Problems",
-        [0, 1]
+    BehavioralProblems = yes_no(
+        "Behavioral Problems"
     )
 
 with col2:
-    Confusion = st.selectbox(
-        "Confusion",
-        [0, 1]
-    )
+    Confusion = yes_no("Confusion")
 
-    Disorientation = st.selectbox(
-        "Disorientation",
-        [0, 1]
+    Disorientation = yes_no(
+        "Disorientation"
     )
 
 with col3:
-    PersonalityChanges = st.selectbox(
-        "Personality Changes",
-        [0, 1]
+    PersonalityChanges = yes_no(
+        "Personality Changes"
     )
 
-    DifficultyCompletingTasks = st.selectbox(
-        "Difficulty Completing Tasks",
-        [0, 1]
+    DifficultyCompletingTasks = yes_no(
+        "Difficulty Completing Tasks"
     )
 
-Forgetfulness = st.selectbox(
-    "Forgetfulness",
-    [0, 1]
-)
+Forgetfulness = yes_no("Forgetfulness")
 
 st.divider()
 
 # -----------------------------------
 # Prediction
 # -----------------------------------
-
 if st.button("🔍 Predict Alzheimer's Risk"):
 
     input_data = pd.DataFrame([[
