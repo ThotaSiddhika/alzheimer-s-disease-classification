@@ -66,19 +66,8 @@ with col1:
 with col2:
     Gender = st.selectbox("Gender", ["Male", "Female"])
     Gender = 1 if Gender == "Male" else 0
-
 with col3:
-    Ethnicity = st.selectbox(
-        "Ethnicity",
-        ["Caucasian", "African American", "Asian", "Other"]
-    )
-
-    Ethnicity = {
-        "Caucasian": 0,
-        "African American": 1,
-        "Asian": 2,
-        "Other": 3
-    }[Ethnicity]
+    Ethnicity = st.selectbox("Ethnicity", [0, 1, 2, 3])
 
 EducationLevel = st.selectbox(
     "Education Level",
