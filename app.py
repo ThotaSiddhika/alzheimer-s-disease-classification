@@ -62,7 +62,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     Age = st.number_input("Age", 60, 100, 70)
-
+    st.caption("Valid range: 60–100")
 with col2:
     Gender = st.selectbox("Gender", ["Male", "Female"])
     Gender = 1 if Gender == "Male" else 0
