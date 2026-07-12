@@ -261,39 +261,43 @@ st.divider()
 if st.button("🔍 Predict Alzheimer's Risk"):
 
 
-    errors = []
 
     if not (0 <= Age <= 100):
-        errors.append("Invalid value for Age")
+        st.error("Invalid value for Age")
+        st.stop()
 
     if not (10.0 <= BMI <= 50.0):
-        errors.append("Invalid value for BMI")
+        st.error("Invalid value for BMI")
+        st.stop()
 
     if not (0.0 <= AlcoholConsumption <= 20.0):
-        errors.append("Invalid value for Alcohol Consumption")
+        st.error("Invalid value for Alcohol Consumption")
+        st.stop()
 
     if not (80 <= SystolicBP <= 200):
-        errors.append("Invalid value for Systolic BP")
+        st.error("Invalid value for Systolic BP")
+        st.stop()
 
     if not (50 <= DiastolicBP <= 150):
-        errors.append("Invalid value for Diastolic BP")
+        st.error("Invalid value for Diastolic BP")
+        st.stop()
 
     if not (100.0 <= CholesterolTotal <= 400.0):
-        errors.append("Invalid value for Total Cholesterol")
+        st.error("Invalid value for Total Cholesterol")
+        st.stop()
 
     if not (20.0 <= CholesterolLDL <= 300.0):
-        errors.append("Invalid value for LDL Cholesterol")
+        st.error("Invalid value for LDL Cholesterol")
+        st.stop()
 
     if not (10.0 <= CholesterolHDL <= 150.0):
-        errors.append("Invalid value for HDL Cholesterol")
+        st.error("Invalid value for HDL Cholesterol")
+        st.stop()
 
     if not (20.0 <= CholesterolTriglycerides <= 500.0):
-        errors.append("Invalid value for Triglycerides")
-
-    if errors:
-        for error in errors:
-            st.error(error)
+        st.error("Invalid value for Triglycerides")
         st.stop()
+
 
     # Prediction code here
     input_data = pd.DataFrame([[
