@@ -328,7 +328,36 @@ if st.button("🔍 Predict Alzheimer's Risk"):
         DifficultyCompletingTasks,
         Forgetfulness
     ]])
+    input_data.columns = [
+    "Age", "Gender", "Ethnicity", "EducationLevel", "BMI",
+    "Smoking", "AlcoholConsumption", "PhysicalActivity",
+    "DietQuality", "SleepQuality",
+    "FamilyHistoryAlzheimers",
+    "CardiovascularDisease",
+    "Diabetes",
+    "Depression",
+    "HeadInjury",
+    "Hypertension",
+    "SystolicBP",
+    "DiastolicBP",
+    "CholesterolTotal",
+    "CholesterolLDL",
+    "CholesterolHDL",
+    "CholesterolTriglycerides",
+    "MMSE",
+    "FunctionalAssessment",
+    "MemoryComplaints",
+    "BehavioralProblems",
+    "ADL",
+    "Confusion",
+    "Disorientation",
+    "PersonalityChanges",
+    "DifficultyCompletingTasks",
+    "Forgetfulness"
+]
 
+st.subheader("Entered Values")
+st.dataframe(input_data)
     input_scaled = scaler.transform(input_data)
 
     prediction = model.predict(input_scaled)[0]
