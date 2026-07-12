@@ -61,7 +61,10 @@ st.subheader("👤 Demographic Information")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    Age = st.number_input("Age", 60, 100, 70)
+    Age = st.number_input("Age", min_value=0,value=70)
+
+if Age > 100:
+    st.error("Invalid value for Age")
     st.caption("Valid range: 60–100")
 with col2:
     Gender = st.selectbox("Gender", ["Male", "Female"])
@@ -91,7 +94,7 @@ st.subheader("🏃 Lifestyle Information")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    BMI = st.number_input("BMI", 10.0, 50.0, 25.0)
+    BMI = st.number_input("BMI", 0.0, 50.0, 25.0)
 
 with col2:
     Smoking = yes_no("Smoking")
