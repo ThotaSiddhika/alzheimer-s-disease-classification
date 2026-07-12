@@ -61,8 +61,8 @@ st.subheader("👤 Demographic Information")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    Age = st.number_input("Age", 60, 100, 70)
-
+    Age = st.number_input("Age", 0, 100, 70)
+    st.caption("Valid range: 0–100")
 with col2:
     Gender = st.selectbox("Gender", ["Male", "Female"])
     Gender = 1 if Gender == "Male" else 0
@@ -92,7 +92,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     BMI = st.number_input("BMI", 10.0, 50.0, 25.0)
-
+    st.caption("Valid range: 10–50")
 with col2:
     Smoking = yes_no("Smoking")
 
@@ -103,7 +103,7 @@ with col3:
         20.0,
         5.0
     )
-
+    st.caption("Valid range: 0–20")
 PhysicalActivity = st.slider(
     "Physical Activity",
     0.0,
@@ -169,21 +169,21 @@ with col1:
         200,
         120
     )
-
+    st.caption("Valid range: 80–200")
     CholesterolTotal = st.number_input(
         "Total Cholesterol",
         100.0,
         400.0,
         200.0
     )
-
+    st.caption("Valid range: 100–400")
     CholesterolLDL = st.number_input(
         "LDL Cholesterol",
         20.0,
         300.0,
         100.0
     )
-
+    st.caption("Valid range: 20–300")
 with col2:
     DiastolicBP = st.number_input(
         "Diastolic BP",
@@ -191,21 +191,21 @@ with col2:
         150,
         80
     )
-
+    st.caption("Valid range: 50–150")
     CholesterolHDL = st.number_input(
         "HDL Cholesterol",
         10.0,
         150.0,
         50.0
     )
-
+    st.caption("Valid range: 10–150")
     CholesterolTriglycerides = st.number_input(
         "Triglycerides",
         20.0,
         500.0,
         150.0
     )
-
+    st.caption("Valid range: 20–500")
 st.divider()
 
 # -----------------------------------
@@ -263,7 +263,7 @@ if st.button("🔍 Predict Alzheimer's Risk"):
 
     errors = []
 
-    if not (60 <= Age <= 100):
+    if not (0 <= Age <= 100):
         errors.append("Invalid value for Age")
 
     if not (10.0 <= BMI <= 50.0):
