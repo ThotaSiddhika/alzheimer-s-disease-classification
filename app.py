@@ -367,24 +367,24 @@ prediction = model.predict(input_scaled)[0]
 probability = model.predict_proba(input_scaled)[0][1]
 #predict_proba()gives confidence behind reason
 
-    st.divider()
+st.divider()
 
-    st.subheader("Prediction Result")
+st.subheader("Prediction Result")
 
-    if prediction == 1:
+if prediction == 1:
         st.error(
             f"⚠️ High Risk of Alzheimer's Disease\n\n"
             f"Probability: {probability:.2%}"
         )
-    else:
+else:
         st.success(
             f"✅ Low Risk of Alzheimer's Disease\n\n"
             f"Probability: {(1-probability):.2%}"
         )
 
-    st.progress(float(probability))
+st.progress(float(probability))
 
-    st.metric(
+st.metric(
         label="Risk Probability",
         value=f"{probability:.2%}"
     )
