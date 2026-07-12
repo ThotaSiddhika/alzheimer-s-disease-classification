@@ -360,7 +360,7 @@ input_data.columns = [
 st.subheader("Entered Values")
 st.dataframe(input_data)
 
-    input_scaled = scaler.transform(input_data)
+input_scaled = scaler.transform(input_data)
 
     prediction = model.predict(input_scaled)[0]
 
