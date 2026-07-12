@@ -362,9 +362,9 @@ st.dataframe(input_data)
 
 input_scaled = scaler.transform(input_data)
 
-    prediction = model.predict(input_scaled)[0]
+prediction = model.predict(input_scaled)[0]
 
-    probability = model.predict_proba(input_scaled)[0][1]
+probability = model.predict_proba(input_scaled)[0][1]
 #predict_proba()gives confidence behind reason
 
     st.divider()
