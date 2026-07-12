@@ -263,31 +263,31 @@ if st.button("🔍 Predict Alzheimer's Risk"):
 
     errors = []
 
-    if not (60 <= Age <= 100):
+    if Age > 100:
         errors.append("Invalid value for Age")
 
-    if not (10.0 <= BMI <= 50.0):
+    if BMI > 50:
         errors.append("Invalid value for BMI")
 
-    if not (0.0 <= AlcoholConsumption <= 20.0):
+    if AlcoholConsumption > 20:
         errors.append("Invalid value for Alcohol Consumption")
 
-    if not (80 <= SystolicBP <= 200):
+    if SystolicBP > 200:
         errors.append("Invalid value for Systolic BP")
 
-    if not (50 <= DiastolicBP <= 150):
+    if DiastolicBP > 150:
         errors.append("Invalid value for Diastolic BP")
 
-    if not (100.0 <= CholesterolTotal <= 400.0):
+    if CholesterolTotal > 400:
         errors.append("Invalid value for Total Cholesterol")
 
-    if not (20.0 <= CholesterolLDL <= 300.0):
+    if CholesterolLDL > 300:
         errors.append("Invalid value for LDL Cholesterol")
 
-    if not (10.0 <= CholesterolHDL <= 150.0):
+    if CholesterolHDL > 150:
         errors.append("Invalid value for HDL Cholesterol")
 
-    if not (20.0 <= CholesterolTriglycerides <= 500.0):
+    if CholesterolTriglycerides > 500:
         errors.append("Invalid value for Triglycerides")
 
     if errors:
