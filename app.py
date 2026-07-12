@@ -255,11 +255,47 @@ Forgetfulness = yes_no("Forgetfulness")
 
 st.divider()
 
+
 # -----------------------------------
 # Prediction
 # -----------------------------------
 if st.button("🔍 Predict Alzheimer's Risk"):
 
+    errors = []
+
+    if not (60 <= Age <= 100):
+        errors.append("Invalid value for Age")
+
+    if not (10.0 <= BMI <= 50.0):
+        errors.append("Invalid value for BMI")
+
+    if not (0.0 <= AlcoholConsumption <= 20.0):
+        errors.append("Invalid value for Alcohol Consumption")
+
+    if not (80 <= SystolicBP <= 200):
+        errors.append("Invalid value for Systolic BP")
+
+    if not (50 <= DiastolicBP <= 150):
+        errors.append("Invalid value for Diastolic BP")
+
+    if not (100.0 <= CholesterolTotal <= 400.0):
+        errors.append("Invalid value for Total Cholesterol")
+
+    if not (20.0 <= CholesterolLDL <= 300.0):
+        errors.append("Invalid value for LDL Cholesterol")
+
+    if not (10.0 <= CholesterolHDL <= 150.0):
+        errors.append("Invalid value for HDL Cholesterol")
+
+    if not (20.0 <= CholesterolTriglycerides <= 500.0):
+        errors.append("Invalid value for Triglycerides")
+
+    if errors:
+        for error in errors:
+            st.error(error)
+        st.stop()
+
+    # Prediction code continues...
     input_data = pd.DataFrame([[
         Age, Gender, Ethnicity, EducationLevel, BMI,
         Smoking, AlcoholConsumption, PhysicalActivity,
