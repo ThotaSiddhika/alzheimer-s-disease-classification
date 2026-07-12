@@ -61,8 +61,8 @@ st.subheader("👤 Demographic Information")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    Age = st.number_input("Age", 60, 100, 70)
-
+    Age = st.number_input("Age", 0, 100, 70)
+    st.caption("Valid range: 0–100:otherwise value is invalid")
 with col2:
     Gender = st.selectbox("Gender", ["Male", "Female"])
     Gender = 1 if Gender == "Male" else 0
@@ -92,7 +92,7 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     BMI = st.number_input("BMI", 10.0, 50.0, 25.0)
-
+    st.caption("Valid range: 10–50:otherwise value is invalid")
 with col2:
     Smoking = yes_no("Smoking")
 
@@ -103,7 +103,7 @@ with col3:
         20.0,
         5.0
     )
-
+    st.caption("Valid range: 0–20:otherwise value is invalid")
 PhysicalActivity = st.slider(
     "Physical Activity",
     0.0,
@@ -169,21 +169,21 @@ with col1:
         200,
         120
     )
-
+    st.caption("Valid range: 80–200:otherwise value is invalid")
     CholesterolTotal = st.number_input(
         "Total Cholesterol",
         100.0,
         400.0,
         200.0
     )
-
+    st.caption("Valid range: 100–400:otherwise value is invalid")
     CholesterolLDL = st.number_input(
         "LDL Cholesterol",
         20.0,
         300.0,
         100.0
     )
-
+    st.caption("Valid range: 20–300:otherwise value is invalid")
 with col2:
     DiastolicBP = st.number_input(
         "Diastolic BP",
@@ -191,21 +191,21 @@ with col2:
         150,
         80
     )
-
+    st.caption("Valid range: 50–150:otherwise value is invalid")
     CholesterolHDL = st.number_input(
         "HDL Cholesterol",
         10.0,
         150.0,
         50.0
     )
-
+    st.caption("Valid range: 10–150:otherwise value is invalid")
     CholesterolTriglycerides = st.number_input(
         "Triglycerides",
         20.0,
         500.0,
         150.0
     )
-
+    st.caption("Valid range: 20–500:otherwise value is invalid")
 st.divider()
 
 # -----------------------------------
@@ -260,40 +260,6 @@ st.divider()
 # -----------------------------------
 if st.button("🔍 Predict Alzheimer's Risk"):
 
-
-    errors = []
-
-    if not (60 <= Age <= 100):
-        errors.append("Invalid value for Age")
-
-    if not (10.0 <= BMI <= 50.0):
-        errors.append("Invalid value for BMI")
-
-    if not (0.0 <= AlcoholConsumption <= 20.0):
-        errors.append("Invalid value for Alcohol Consumption")
-
-    if not (80 <= SystolicBP <= 200):
-        errors.append("Invalid value for Systolic BP")
-
-    if not (50 <= DiastolicBP <= 150):
-        errors.append("Invalid value for Diastolic BP")
-
-    if not (100.0 <= CholesterolTotal <= 400.0):
-        errors.append("Invalid value for Total Cholesterol")
-
-    if not (20.0 <= CholesterolLDL <= 300.0):
-        errors.append("Invalid value for LDL Cholesterol")
-
-    if not (10.0 <= CholesterolHDL <= 150.0):
-        errors.append("Invalid value for HDL Cholesterol")
-
-    if not (20.0 <= CholesterolTriglycerides <= 500.0):
-        errors.append("Invalid value for Triglycerides")
-
-    if errors:
-        for error in errors:
-            st.error(error)
-        st.stop()
 
     # Prediction code here
     input_data = pd.DataFrame([[
