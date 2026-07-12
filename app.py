@@ -65,7 +65,7 @@ with col1:
 
 if Age > 100:
     st.error("Invalid value for Age")
-    st.caption("Valid range: 60–100")
+
 with col2:
     Gender = st.selectbox("Gender", ["Male", "Female"])
     Gender = 1 if Gender == "Male" else 0
@@ -95,7 +95,8 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     BMI = st.number_input("BMI", 0.0, 50.0, 25.0)
-
+if BMI > 50.0:
+    st.error("Invalid value for BMI")
 with col2:
     Smoking = yes_no("Smoking")
 
@@ -106,7 +107,8 @@ with col3:
         20.0,
         5.0
     )
-
+if AlcoholConsumption > 20.0:
+    st.error("Invalid value for AlcoholConsumption")
 PhysicalActivity = st.slider(
     "Physical Activity",
     0.0,
@@ -173,20 +175,24 @@ with col1:
         120
     )
 
+if SystolicBP > 200:
+    st.error("Invalid value for SystolicBP")
     CholesterolTotal = st.number_input(
         "Total Cholesterol",
         100.0,
         400.0,
         200.0
     )
-
+if CholesterolTotal > 100:
+    st.error("Invalid value for CholesterolTotal")
     CholesterolLDL = st.number_input(
         "LDL Cholesterol",
         20.0,
         300.0,
         100.0
     )
-
+if CholesterolLDL > 100:
+    st.error("Invalid value for CholesterolLDL")
 with col2:
     DiastolicBP = st.number_input(
         "Diastolic BP",
@@ -194,21 +200,24 @@ with col2:
         150,
         80
     )
-
+if DiastolicBP > 100:
+    st.error("Invalid value for DiastolicBP")
     CholesterolHDL = st.number_input(
         "HDL Cholesterol",
         10.0,
         150.0,
         50.0
     )
-
+if CholesterolHDL > 100:
+    st.error("Invalid value for CholesterolHDL")
     CholesterolTriglycerides = st.number_input(
         "Triglycerides",
         20.0,
         500.0,
         150.0
     )
-
+if CholesterolTriglycerides > 500.0:
+    st.error("Invalid value for CholesterolTriglycerides")
 st.divider()
 
 # -----------------------------------
